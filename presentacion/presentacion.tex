@@ -1,0 +1,309 @@
+\documentclass[10pt]{beamer}
+
+%\usetheme{Montpellier}
+\usetheme{Madrid}
+
+\usecolortheme{beaver}
+\usepackage{appendixnumberbeamer}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+\usepackage{pgfplots}
+\usepackage{framed}
+\usepgfplotslibrary{dateplot}
+\usepackage{xspace}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{listings}
+
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+\graphicspath{ {images/} }
+
+
+\title{Estratificación temporal de Aedes Aegypti basada en herramientas geoespaciales y aprendizaje automático}
+%\subtitle{Trabajo Final de Grado, Licenciatura en Ciencias de la Computación}
+
+\date{Diciembre de 2018}
+
+\author{Juan M. Scavuzzo}
+\institute{Facultad de Matemática, Astronomía, Física y Computación \\ Universidad Nacional de Córdoba}
+\begin{document}
+
+\maketitle
+
+
+
+\begin{frame}{Motivación de este trabajo: problemática epidemiológica}
+  \begin{itemize}[<+->]
+   \item Aedes aegypti es el principal vector de Dengue, Chikungunya, Zika
+         y Fiebre Amarilla urbana
+   \item Datos de la Organización Mundial de la Salud:
+    \begin{itemize}[<+->]
+      \item 80 millones de personas se infectan de Dengue anualmente
+      \item 550 mil enfermos requieren hospitalización
+      \item 20 mil personas mueren
+      \item 2.500 millones de personas corren riesgo de contraer la enfermedad
+      \item Más de 100 países con transmisión endémica
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Motivación de este trabajo: problemática epidemiológica}
+
+  \begin{center}
+    \includegraphics[width=0.4\textwidth]{dengue}
+  \end{center}
+
+\end{frame}
+
+
+
+\begin{frame}{Motivación de este trabajo: problemática epidemiológica}
+  Características del Aedes aegypti
+  \pause
+  \begin{itemize}[<+->]
+   \item Gran capacidad adaptativa
+   \item Resistencia a insecticidas
+   \item Resistencia de huevos a la desecación
+   \item Presencia en el medio urbano
+   \item Preferencia de cria en contenedores artificiales
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Motivación de este trabajo: sistemas de modelado actuales}
+  Modelar utilizando información satelital
+  \pause
+  \begin{itemize}[<+->]
+   \item Información ambiental con alcance regional
+   \item Información espacio-temporal
+   \item Grandes avances en los últimos años
+   \pause
+
+  \end{itemize}
+  \begin{center}
+    Pero actualmente se utilizan modelos lineales para relacionar las distintas
+    variables!
+  \end{center}
+
+\end{frame}
+
+
+
+\begin{frame}{Motivación de este trabajo}
+  Algunas cuestiones a tener en cuenta
+  \pause
+  \begin{itemize}[<+->]
+   \item La prevención de las enfermedades en cuestión debe ser a través de control de vectores
+   \begin{itemize}
+     \item Modelos predictivos!
+   \end{itemize}
+   \item Será correcto asumir relaciones lineales entre las variables ambientales y la abundancia del vector?
+   \begin{itemize}
+     \item Modelos no-lineales con... aprendizaje automático!
+   \end{itemize}
+   \item Si es un sistema regional, cómo extrapolo los modelos?
+   \begin{itemize}
+     \item A través de relaciones entre características ambientales!
+   \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Objetivos}
+  \pause
+  \begin{itemize}[<+->]
+   \item Implementar una herramienta, sencilla, para generar modelos predictivos
+   \item Validar la hipótesis de que "modelos no-lineales son mejores para predecir la oviposición que los lineales"
+   \item Proponer una solución a la problemática de escases de datos que se evidencia al pensar en sistemas regionales de estimación de riesgo
+
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Algunos Conceptos: \textit{Epidemiología Panorámica}}
+  \begin{center}
+      Algunos conceptos importantes
+  \end{center}
+
+\end{frame}
+
+
+\begin{frame}{Algunos Conceptos: \textit{Epidemiología Panorámica}}
+  \pause
+  \begin{itemize}[<+->]
+   \item La teledetección y su capacidad de adquirir información
+   \item Información sobre hábitat de insectos y artrópodos
+   \item Fuente de datos sobre la distribución espacio-temporal de enfermedades
+         transmitidas por vectores (Pavlovsky)
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Algunos Conceptos: \textit{Epidemiología Panorámica}}
+  \begin{center}
+    \includegraphics[width=1\textwidth]{paisajes_heterogeneos}
+  \end{center}
+\end{frame}
+
+
+
+\begin{frame}{Algunos Conceptos: \textit{Epidemiología Panorámica}}
+  \begin{itemize}[<+->]
+   \item Ecología panorámica
+   \item Focalidad
+    \begin{itemize}
+      \item Vectores con capacidad de transmisión de la infección
+      \item Vertebrados capaces de funcionar como reservorio de la infección
+      \item Huéspedes susceptibles, como humanos o animales domésticos
+    \end{itemize}
+    \pause
+  \end{itemize}
+  \begin{center}
+    \textbf{\textit{Epidemiología Panorámica}}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{Algunos Conceptos: \textit{Aprendizaje automático}}
+  \begin{framed}
+    \begin{center}
+      \textit{Se dice que un programa de computadora \textbf{aprende} de experiencia
+      $E$ con respecto a alguna tarea $T$ y una métrica de rendimiento $M$, si
+      con la experiencia $E$ se incrementa su rendimiento en la tarea $T$,
+      medida por $M$.}\\
+    \end{center}
+    \centering \textbf{Tom Mitchell, 1997} \cite{mitchell_learn}
+  \end{framed}
+
+\end{frame}
+
+
+
+\begin{frame}{Algunos Conceptos: \textit{Aprendizaje automático (ML)}}
+\begin{itemize}
+  \item Enfoque empírico efectivo para \textit{regresiones} y \textit{clasificaciones}
+  \item Distintos métodos:
+    \begin{itemize}
+      \item Supervisados: Regresiones Lineales, SVMs, ANNs, DTRs...
+      \item No-supervisados: K-NNs, K-means, PCA...
+      \item Semi-supervisados
+    \end{itemize}
+  \item Usado en muchos ámbitos:
+  \begin{itemize}
+    \item Académico
+    \item Industrial
+    \item Gubernamental
+  \end{itemize}
+
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Algunos Conceptos: \textit{Métodos Supervisados}}
+\begin{itemize}
+  \item Aprenden a través de pares de ejemplos $(X, Y_{verd})$
+  \item Conjuntos de entrenamiento y validación
+  \item Evitar \textit{overfitting}
+  \item Ajuste de hiperparámetros...
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Algunos Conceptos: \textit{Parámetros y Hiperparámetros}}
+  \begin{itemize}
+    \item Los algoritmos de ML poseen \textit{parámetros} e \textit{hiperparámetros}
+    \begin{itemize}
+      \item Los hiperparámetros definen el comportamiento durante el proceso de entrenamiento
+      \item Los parámetros se ajustan para definir el modelo luego del entrenamiento
+    \end{itemize}
+    \pause
+
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Algunos Conceptos: \textit{Ajuste de hiperparámetros}}
+  Supongamos una \textbf{Ridge Regression}:
+  \begin{center}
+    $$\hat{y}(w, x) = w_0 + w_1 x_1 + ... + w_p x_p$$
+    $$\underset{w}{min\,}{{||X w - y||_2}}^2 + \alpha{||w||_2}^2$$
+  \end{center}
+\end{frame}
+
+
+
+
+\begin{frame}{Algunos Conceptos: \textit{Ajuste de hiperparámetros}}
+  Supongamos, ahora, un pequeño \textbf{Perceptron Multicapa}:
+  \pause
+  \begingroup
+  \fontsize{7pt}{12pt}\selectfont
+  \defverbatim[colored]\mlp{
+  \begin{lstlisting}[language=Python]
+    MLPRegressor(activation='relu', alpha=0.0001, batch_size='auto', beta_1=0.9,
+           beta_2=0.999, early_stopping=False, epsilon=1e-08,
+           hidden_layer_sizes=(2, 2), learning_rate='constant',
+           learning_rate_init=0.001, max_iter=200, momentum=0.9,
+           nesterovs_momentum=True, power_t=0.5, random_state=None,
+           shuffle=True, solver='adam', tol=0.0001, validation_fraction=0.1,
+           verbose=False, warm_start=False)
+  \end{lstlisting}
+  }
+
+    \mlp
+    \endgroup
+
+\end{frame}
+
+
+
+\begin{frame}{Fin}
+  \begin{center}
+    Gracias! \\ Preguntas?
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{Referencias}
+  \begin{itemize}
+    \item https://github.com/juansca/WordVectors
+
+  \end{itemize}
+\end{frame}
+
+
+
+\appendix
+
+\end{document}
+
+%% \begin{frame}{Blocks}
+%%   Three different block environments are pre-defined and may be styled with an
+%%   optional background color.
+
+%%   \begin{block}{Default}
+%%     Block content.
+%%   \end{block}
+
+%%   \begin{alertblock}{Alert}
+%%     Block content.
+%%   \end{alertblock}
+
+%%   \begin{exampleblock}{Example}
+%%     Block content.
+%%   \end{exampleblock}
+%%   \stepcounter{beamerpauses}
+%%   \begin{itemize}[<+->]
+%%     \item Hola
+%%     \item Chau
+%%   \end{itemize}
+%% \end{frame}
