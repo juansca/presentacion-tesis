@@ -241,29 +241,221 @@
 
 
 
+\defverbatim[colored]\mlp{
+\begin{lstlisting}[language=Python]
+  MLPRegressor(activation='relu', alpha=0.0001, batch_size='auto', beta_1=0.9,
+         beta_2=0.999, early_stopping=False, epsilon=1e-08,
+         hidden_layer_sizes=(2, 2), learning_rate='constant',
+         learning_rate_init=0.001, max_iter=200, momentum=0.9,
+         nesterovs_momentum=True, power_t=0.5, random_state=None,
+         shuffle=True, solver='adam', tol=0.0001, validation_fraction=0.1,
+         verbose=False, warm_start=False)
+\end{lstlisting}
+}
+
 
 \begin{frame}{Algunos Conceptos: \textit{Ajuste de hiperparámetros}}
   Supongamos, ahora, un pequeño \textbf{Perceptron Multicapa}:
   \pause
-  \begingroup
-  \fontsize{7pt}{12pt}\selectfont
-  \defverbatim[colored]\mlp{
-  \begin{lstlisting}[language=Python]
-    MLPRegressor(activation='relu', alpha=0.0001, batch_size='auto', beta_1=0.9,
-           beta_2=0.999, early_stopping=False, epsilon=1e-08,
-           hidden_layer_sizes=(2, 2), learning_rate='constant',
-           learning_rate_init=0.001, max_iter=200, momentum=0.9,
-           nesterovs_momentum=True, power_t=0.5, random_state=None,
-           shuffle=True, solver='adam', tol=0.0001, validation_fraction=0.1,
-           verbose=False, warm_start=False)
-  \end{lstlisting}
-  }
 
-    \mlp
-    \endgroup
-
+  \mlp
 \end{frame}
 
+
+
+\begin{frame}{}
+  \begin{center}
+    Modelado de la población del vector de Dengue
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{Obtención y análisis de datos a utilizar}
+  \begin{center}
+    \includegraphics[width=.8\textwidth]{tartagal}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{Obtención y análisis de datos a utilizar}
+\begin{itemize}
+  \item Oviposición: ovitrampas
+  \item De productos satelitales a variables ambientales:
+      \begin{itemize}
+        \item Propiedades de vegetación: \textbf{NDVI}
+        \item Humedad: \textbf{NDWI}
+        \item Temperatura de la superficie: \textbf{LST}
+        \item Precipitación: \textbf{TRMM}
+      \end{itemize}
+  \item En todos los casos se contempla un \textit{lag}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Obtención y análisis de datos a utilizar}
+  Datos de área rural y área urbana
+  \begin{center}
+    \includegraphics[width=0.7\textwidth]{zones}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{Análisis y selección de datos a utilizar}
+\begin{itemize}
+  \item Cinco variables elegidas:
+    \begin{itemize}
+      \item NDVI rural lag 1
+      \item NDWI rural lag 1
+      \item LST rural dia lag 3
+      \item LST rural noche lag 1
+      \item TRMM lag 3
+    \end{itemize}
+    \item Normalización con \textit{z-score}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Análisis y selección de datos a utilizar}
+  \begin{center}
+    \includegraphics[width=1.22\textwidth]{heatmap}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{Sistema completo}
+  \begin{center}
+    \includegraphics[width=1\textwidth]{sistema_datos}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{Requerimientos de nuestro sistema}
+  \begin{itemize}
+    \item Facilidad de utilización
+    \item Herramienta de limpieza de datos
+    \item Flexibilidad para cambiar conjuntos de datos
+    \item Herramienta para ajustar hiperparámetros
+    \item Generar modelos en formato utilizable en producción
+    \item Flexibilidad para agregar nuevos algoritmos
+    \item Herramienta de visualización de datos
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Arquitectura del sistema}
+  \begin{itemize}
+    \item Data: \textit{scikit-learn}, \textit{pandas}, \textit{numpy}
+    \item Models: \textit{scikit-learn}
+    \item Tunning: \textit{Irace} (\textit{Iterated Racing for Automatic Algorithm Configuration})
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Modelando poblaciones de mosquito}
+  Todos los algoritmos de ML que se utilizaron son de la librería \textit{scikit-learn}
+  \begin{itemize}
+    \item Lineales:
+      \begin{itemize}
+        \item Ridge
+        \item Tradicional (mínimos cuadrados)
+      \end{itemize}
+    \item No-lineales:
+      \begin{itemize}
+        \item Regresión de árboles de decisión (DTR)
+        \item Regresión de K-Vecinos más cercanos (KNNR)
+        \item Support Vector Regressor (SVR)
+        \item Perceptron multicapa (MLP)
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Modelando poblaciones de mosquito}
+  \begin{center}
+    Evaluación y análisis de los modelos generados
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{Evaluación y análisis de los modelos generados}
+  \begin{center}
+    Métodos Lineales
+    \includegraphics[width=1\textwidth]{RidgeVsTime}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{Evaluación y análisis de los modelos generados}
+  \begin{center}
+    Regresión de árbol de decisión (DTR)
+    \includegraphics[width=1\textwidth]{dtr}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{Evaluación y análisis de los modelos generados}
+  \begin{center}
+    Regresión de K-Vecinos más cercanos (KNNR)
+    \includegraphics[width=1\textwidth]{knn}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{Evaluación y análisis de los modelos generados}
+  \begin{center}
+    Support Vector Regressor (SVR)
+    \includegraphics[width=1\textwidth]{svr}
+  \end{center}
+\end{frame}
+
+
+
+\begin{frame}{Evaluación y análisis de los modelos generados}
+  \begin{center}
+    Perceptron multicapa (MLP)
+    \includegraphics[width=1\textwidth]{mlp}
+  \end{center}
+\end{frame}
+
+
+
+
+\begin{frame}{Evaluación y análisis de los modelos generados}
+
+%\begin{table}[hbt]
+\centering
+Resumen de los datos observados y los ajustados
+%\caption{Resumen de los datos observados y los ajustados}\label{Tab:Summary}
+\begin{tabular}{*7{r}}
+\toprule
+&Mín	&$q_{1/4}$	&$q_{1/2}$	&Media	&$q_{3/4}$	&Máx\\ \cmidrule(lr){2-7}
+Observado	&$-0.863$	&$-0.742$	&$-0.487$	&$0.000$	&$0.704$	&$3.652$\\
+Lineal	&$-1.641$	&$-0.716$	&$ 0.027$	&$-0.087$	&$0.462$	&$1.387$\\
+Ridge	&$-1.638$	&$-0.680$	&$ 0.028$	&$-0.084$	&$0.459$	&$1.370$\\
+MLP	&$-0.894$	&$-0.677$	&$-0.323$	&$0.093$	&$0.716$	&$4.084$\\
+DTR	&$-0.752$	&$-0.752$	&$-0.128$	&$0.138$	&$0.998$	&$2.312$\\
+KNNR	&$-0.863$	&$-0.699$	&$-0.501$	&$0.099$	&$1.033$	&$2.679$\\
+SVR	&$-1.021$	&$-0.601$	&$-0.232$	&$-0.147$	&$0.309$	&$1.023$\\
+\bottomrule
+\end{tabular}
+%\end{table}
+\end{frame}
+
+
+
+\begin{frame}{Evaluación y análisis de los modelos generados}
+  \begin{center}
+    Scatterplot de datos observados vs datos predichos
+    \includegraphics[width=0.6\textwidth]{scatterplot}
+  \end{center}
+\end{frame}
+
+
+
+
+\begin{frame}{Evaluación y análisis de los modelos generados}
+  \begin{center}
+    Discusión de resultados obtenidos
+  \end{center}
+\end{frame}
 
 
 \begin{frame}{Fin}
@@ -279,6 +471,11 @@
 
   \end{itemize}
 \end{frame}
+
+
+
+
+
 
 
 
