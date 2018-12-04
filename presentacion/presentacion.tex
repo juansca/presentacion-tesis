@@ -18,10 +18,10 @@
 \usepackage{verbatim}
 \usepackage{listings}
 
-%\usefonttheme{professionalfonts}
-%\usefonttheme{serif} % default family is serif
-%\usepackage{fontspec}
-%\setmainfont{Liberation Serif}
+\usefonttheme{professionalfonts}
+\usefonttheme{serif} % default family is serif
+\usepackage{fontspec}
+\setmainfont{Liberation Serif}
 \newcommand\IncrFont{\fontsize{20}{20}\selectfont}
 \newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
 \graphicspath{ {images/} }
@@ -34,6 +34,7 @@
 
 \author{Juan M. Scavuzzo}
 \institute{Facultad de Matemática, Astronomía, Física y Computación \\ Universidad Nacional de Córdoba}
+\titlegraphic{\includegraphics[width=\textwidth,height=.3\textheight]{titulo_mosq}}
 \begin{document}
 
 \maketitle
@@ -226,7 +227,7 @@
 
 \begin{frame}{Algunos Conceptos: \textit{Parámetros y Hiperparámetros}}
   \begin{itemize}
-    \item Los algoritmos de ML poseen \textit{parámetros} e \textit{hiperparámetros}
+    \item Los modelos de ML poseen \textit{parámetros} e \textit{hiperparámetros}
     \begin{itemize}[<+->]
       \item Los hiperparámetros definen el comportamiento durante el proceso de entrenamiento
       \item Los parámetros se ajustan para definir el modelo luego del entrenamiento
@@ -473,6 +474,19 @@ SVR	&$-1.021$	&$-0.601$	&$-0.232$	&$-0.147$	&$0.309$	&$1.023$\\
   \end{center}
 \end{frame}
 
+\begin{frame}
+  \begin{columns}[t]
+  \column{.5\textwidth}
+  \centering
+  Boxplot de errores
+  \includegraphics[width=5cm,height=4cm]{boxplot_error}\\
+  \column{.5\textwidth}
+  \centering
+  Histogramas de errores
+  \includegraphics[width=5cm,height=4cm]{histogram_error}
+  \end{columns}
+
+\end{frame}
 
 \begin{frame}{Modelando poblaciones de mosquito}
   \IncrFont
@@ -521,6 +535,15 @@ SVR	&$-1.021$	&$-0.601$	&$-0.232$	&$-0.147$	&$0.309$	&$1.023$\\
   \end{center}
 \end{frame}
 
+\begin{frame}{Aproximación a la solución}
+  \begin{center}
+    \fontsize{15}{15}\selectfont
+    \textbf{\textit{Primera Ley de la Geografía}}
+  \end{center}
+  "\textit{Everything is related to everything else, but near things are more related
+  than distant things}"
+\end{frame}
+
 
 
 \begin{frame}{Aproximación a la solución}
@@ -543,11 +566,11 @@ SVR	&$-1.021$	&$-0.601$	&$-0.232$	&$-0.147$	&$0.309$	&$1.023$\\
   ambientales?
   \pause
   \begin{itemize}[<+->]
-    \item Definamos la distancia entre dos puntos geográficos como:
+    \item Definamos la \textit{distancia ambiental} entre dos puntos geográficos como:
       \begin{center}
-        $dist_{x_{1}\ -\ x_{2}} \ =\ \sqrt{\sum{}{(v_{k_{1}} - v_{k_{2}})^{2}}}$
+        $dist_{x_{1}\ -\ x_{2}} \ =\ \sqrt{\sum{}{(v_{i_{1}} - v_{i_{2}})^{2}}}$
       \end{center}
-      donde $v_{k}$ son las variables ambientales
+      donde $v_{i}$ son las variables ambientales
 
     \item Luego, si queremos construir el modelo para la ciudad $new$:
       \begin{center}
@@ -567,6 +590,42 @@ SVR	&$-1.021$	&$-0.601$	&$-0.232$	&$-0.147$	&$0.309$	&$1.023$\\
   \begin{center}
     \includegraphics[width=0.7\textwidth]{zonas_ned1}
   \end{center}
+\end{frame}
+
+
+
+
+\begin{frame}{Evaluación de la propuesta}
+  \begin{center}
+    Distancia Ambiental Normalizada a las cuatro ciudades con datos
+  \end{center}
+
+  \begin{columns}[t]
+  \column{.5\textwidth}
+  \centering
+  Clorinda
+  \includegraphics[width=5cm,height=4cm]{ned_clorinda}\\
+  \column{.5\textwidth}
+  \centering
+  Tartagal
+  \includegraphics[width=5cm,height=4cm]{ned_tartagal}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}{Evaluación de la propuesta}
+
+    \begin{columns}[t]
+    \column{.5\textwidth}
+    \centering
+    Puerto Iguazú
+    \includegraphics[width=5cm,height=4cm]{ned_iguazu}\\
+    \column{.5\textwidth}
+    \centering
+    Pampa del Indio
+    \includegraphics[width=5cm,height=4cm]{ned_pampa}
+    \end{columns}
+
 \end{frame}
 
 
@@ -617,39 +676,6 @@ Salta
 %\end{table}
 \end{frame}
 
-
-\begin{frame}{Evaluación de la propuesta}
-  \begin{center}
-    Distancia Ambiental Normalizada a las cuatro ciudades con datos
-  \end{center}
-
-  \begin{columns}[t]
-  \column{.5\textwidth}
-  \centering
-  Clorinda
-  \includegraphics[width=5cm,height=4cm]{ned_clorinda}\\
-  \column{.5\textwidth}
-  \centering
-  Tartagal
-  \includegraphics[width=5cm,height=4cm]{ned_tartagal}
-  \end{columns}
-
-\end{frame}
-
-\begin{frame}{Evaluación de la propuesta}
-
-    \begin{columns}[t]
-    \column{.5\textwidth}
-    \centering
-    Puerto Iguazú
-    \includegraphics[width=5cm,height=4cm]{ned_iguazu}\\
-    \column{.5\textwidth}
-    \centering
-    Pampa del Indio
-    \includegraphics[width=5cm,height=4cm]{ned_pampa}
-    \end{columns}
-
-\end{frame}
 
 \begin{frame}{}
   \IncrFont
