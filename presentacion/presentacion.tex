@@ -39,6 +39,13 @@
 
 \maketitle
 
+\begin{frame}{Algunos Conceptos: \textit{Epidemiología Panorámica}}
+\IncrFont
+  \begin{center}
+    \textit{\textbf{Motivaciones de este trabajo}}
+  \end{center}
+\end{frame}
+
 
 
 \begin{frame}{Motivación de este trabajo: problemática epidemiológica}
@@ -305,10 +312,10 @@ Ridge(alpha=1.0, fit_intercept=True, normalize=False,
   \item Oviposición: ovitrampas
   \item De productos satelitales a variables ambientales:
       \begin{itemize}
-        \item Propiedades de vegetación: \textbf{NDVI}
-        \item Humedad: \textbf{NDWI}
-        \item Temperatura de la superficie: \textbf{LST}
-        \item Precipitación: \textbf{TRMM}
+        \item Propiedades de vegetación: \textbf{NDVI} (\textit{MODIS})
+        \item Humedad: \textbf{NDWI} (\textit{MODIS})
+        \item Temperatura de la superficie: \textbf{LST} (\textit{MODIS})
+        \item Precipitación: \textbf{TRMM/GPM}
       \end{itemize}
   \item En todos los casos se contempla un \textit{lag}
 \end{itemize}
@@ -475,16 +482,16 @@ SVR	&$-1.021$	&$-0.601$	&$-0.232$	&$-0.147$	&$0.309$	&$1.023$\\
 \end{frame}
 
 \begin{frame}
-  \begin{columns}[t]
-  \column{.5\textwidth}
-  \centering
-  Boxplot de errores
-  \includegraphics[width=5cm,height=4cm]{boxplot_error}\\
-  \column{.5\textwidth}
-  \centering
-  Histogramas de errores
-  \includegraphics[width=5cm,height=4cm]{histogram_error}
-  \end{columns}
+  \begin{center}
+    Análisis de errores
+  \end{center}
+  \begin{center}
+    \includegraphics[width=11cm,height=5.2cm]{boxplot_error}
+  \end{center}
+  \begin{center}
+    \includegraphics[width=10cm,height=3cm]{histogram_error}
+
+  \end{center}
 
 \end{frame}
 
@@ -538,7 +545,7 @@ SVR	&$-1.021$	&$-0.601$	&$-0.232$	&$-0.147$	&$0.309$	&$1.023$\\
 \begin{frame}{Aproximación a la solución}
   \begin{center}
     \fontsize{15}{15}\selectfont
-    \textbf{\textit{Primera Ley de la Geografía}}
+    \textbf{\textit{Primera Ley de la Geografía - Tobler, 1970}}
   \end{center}
   "\textit{Everything is related to everything else, but near things are more related
   than distant things}"
