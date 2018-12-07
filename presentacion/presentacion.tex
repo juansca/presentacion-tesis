@@ -38,14 +38,22 @@
 \begin{document}
 
 \maketitle
+\setbeamercolor{section number projected}{bg=red}
+\tableofcontents[hideallsubsections]
 
-\begin{frame}{Algunos Conceptos: \textit{Epidemiología Panorámica}}
+
+\section{Motivaciones de este trabajo}
+
+\begin{frame}{}
 \IncrFont
   \begin{center}
     \textit{\textbf{Motivaciones de este trabajo}}
   \end{center}
 \end{frame}
 
+
+
+\subsection{Problemática epidemiológica}
 
 
 \begin{frame}{Motivación de este trabajo: problemática epidemiológica}
@@ -68,6 +76,7 @@
 \begin{frame}{Motivación de este trabajo: problemática epidemiológica}
 
   \begin{center}
+    Taza de Dengue a nivel provincia, cada 100mil habitantes
     \includegraphics[width=0.4\textwidth]{dengue}
   \end{center}
 
@@ -89,6 +98,9 @@
 
 
 
+\subsection{Sistemas de modelado actuales}
+
+
 \begin{frame}{Motivación de este trabajo: sistemas de modelado actuales}
   Modelar utilizando información satelital
   \pause
@@ -106,6 +118,8 @@
 
 \end{frame}
 
+
+\subsection{En resumen...}
 
 
 \begin{frame}{Motivación de este trabajo}
@@ -129,6 +143,9 @@
 \end{frame}
 
 
+\section{Objetivos}
+
+
 \begin{frame}{Objetivos}
   \pause
   \begin{itemize}[<+->]
@@ -140,6 +157,11 @@
 
 \end{frame}
 
+
+\section{Algunos conceptos importantes}
+
+
+\subsection{Epidemiología Panorámica}
 
 \begin{frame}{Algunos Conceptos: \textit{Epidemiología Panorámica}}
 \IncrFont
@@ -171,14 +193,15 @@
 
 
 \begin{frame}{Algunos Conceptos: \textit{Epidemiología Panorámica}}
-  \begin{itemize}[<+->]
-   \item Ecología panorámica
+  \begin{itemize}
    \item Focalidad
     \begin{itemize}
-      \item Vectores con capacidad de transmisión de la infección
-      \item Vertebrados capaces de funcionar como reservorio de la infección
-      \item Huéspedes susceptibles, como humanos o animales domésticos
+      \item \textbf{Vectores} con capacidad de transmisión de la infección
+      \item Vertebrados capaces de funcionar como \textbf{reservorio} de la infección
+      \item \textbf{Huéspedes} susceptibles, como humanos o animales domésticos
     \end{itemize}
+    \item Ecología panorámica
+
     \pause
   \end{itemize}
   \begin{center}
@@ -186,6 +209,8 @@
   \end{center}
 \end{frame}
 
+
+\subsection{Aprendizaje automático (ML)}
 
 \begin{frame}{Algunos Conceptos: \textit{Aprendizaje automático (ML)}}
   \begin{framed}
@@ -291,6 +316,8 @@ Ridge(alpha=1.0, fit_intercept=True, normalize=False,
 \end{frame}
 
 
+\section{Modelado de la población del vector de Dengue}
+
 
 \begin{frame}{}
   \IncrFont
@@ -298,6 +325,8 @@ Ridge(alpha=1.0, fit_intercept=True, normalize=False,
     \textit{\textbf{Modelado de la población del vector de Dengue}}
   \end{center}
 \end{frame}
+
+\subsection{Obtención, análisis y selección de datos}
 
 
 \begin{frame}{Obtención y análisis de datos a utilizar}
@@ -350,6 +379,9 @@ Ridge(alpha=1.0, fit_intercept=True, normalize=False,
 \end{frame}
 
 
+\subsection{El sistema desarrollado}
+
+
 \begin{frame}{Sistema completo}
   \begin{center}
     \includegraphics[width=1\textwidth]{sistema_datos}
@@ -397,6 +429,8 @@ Ridge(alpha=1.0, fit_intercept=True, normalize=False,
   \end{itemize}
 \end{frame}
 
+
+\subsection{Evaluación y análisis de los modelos generados}
 
 
 \begin{frame}{Modelando poblaciones de mosquito}
@@ -473,6 +507,64 @@ SVR	&$-1.021$	&$-0.601$	&$-0.232$	&$-0.147$	&$0.309$	&$1.023$\\
 \end{frame}
 
 
+\begin{frame}
+  \centering
+  Medidas de calidad de los modelos
+  \begin{tabular}{*7{r}}
+  \toprule
+  & Corr11
+  & MSE
+  & Media en VC
+  & SD en VC
+  & CorrL20
+  & MSEL20 \\ \midrule
+  Lineal
+  &$0.774$
+  &$0.624$
+  &$1.108$%&\boldmath$1.108$  %CARO: cambio
+  &$0.278$
+  &$0.890$
+  &$0.580$\\
+  Ridge
+  &$0.775$
+  &$0.621$
+  &$1.072$
+  &$0.277$
+  &$0.896$
+  &$0.566$ \\
+  SVR
+  &$0.837$
+  &$0.613$
+  &\boldmath$0.834$   %CARO: cambio
+  &$0.490$
+  &\boldmath$0.967$
+  &\boldmath$0.464$ \\
+  MLP
+  &$0.875$
+  &$0.528$
+  &$1.086$
+  &$0.288$
+  &$0.727$
+  &$1.023$ \\
+  KNN
+  &\boldmath$0.888$
+  &\boldmath$0.494$
+  &$0.981$
+  &$0.362$
+  &$0.797$
+  &$0.936$\\
+  DTR
+  &$0.679$
+  &$0.768$
+  &$1.148$
+  &$0.544$
+  &$0.532$
+  &$1.131$ \\
+  \bottomrule
+  \end{tabular}
+
+\end{frame}
+
 
 \begin{frame}{Evaluación y análisis de los modelos generados}
   \begin{center}
@@ -504,6 +596,7 @@ SVR	&$-1.021$	&$-0.601$	&$-0.232$	&$-0.147$	&$0.309$	&$1.023$\\
 
 
 
+\subsection{Problemas de un sistema regional}
 
 
 \begin{frame}{Problemas de un sistema regional}
@@ -521,12 +614,17 @@ SVR	&$-1.021$	&$-0.601$	&$-0.232$	&$-0.147$	&$0.309$	&$1.023$\\
 \end{frame}
 
 
+\section{Generalización espacial de modelos epidemiológicos}
+
 \begin{frame}{}
   \IncrFont
   \begin{center}
     \textit{\textbf{Generalización espacial de modelos epidemiológicos}}
   \end{center}
 \end{frame}
+
+
+\subsection{El problema}
 
 
 \begin{frame}{Presentación del problema}
@@ -541,6 +639,9 @@ SVR	&$-1.021$	&$-0.601$	&$-0.232$	&$-0.147$	&$0.309$	&$1.023$\\
     $ovip_{j} = \beta_{j} + \sum{}{coef_{ji} \times envVar_{i}(j)}$
   \end{center}
 \end{frame}
+
+
+\subsection{Aproximación a la solución}
 
 \begin{frame}{Aproximación a la solución}
   \begin{center}
@@ -568,6 +669,9 @@ SVR	&$-1.021$	&$-0.601$	&$-0.232$	&$-0.147$	&$0.309$	&$1.023$\\
   \end{itemize}
 \end{frame}
 
+\subsection{Solución propuesta: \textit{Distancia Ambiental Normalizada}}
+
+
 \begin{frame}{Distancia Ambiental Normalizada (NED)}
   Y si la relación de similaridad de los modelos tiene en cuenta las características
   ambientales?
@@ -591,6 +695,8 @@ SVR	&$-1.021$	&$-0.601$	&$-0.232$	&$-0.147$	&$0.309$	&$1.023$\\
 
   \end{itemize}
 \end{frame}
+
+\subsection{Evaluación de la propuesta}
 
 
 \begin{frame}{Evaluación de la propuesta}
@@ -684,6 +790,9 @@ Salta
 \end{frame}
 
 
+\section{Resumen de alto nivel}
+
+
 \begin{frame}{}
   \IncrFont
   \begin{center}
@@ -703,6 +812,8 @@ Salta
   \end{itemize}
 \end{frame}
 
+
+\section{Datos de color}
 
 
 \begin{frame}{}

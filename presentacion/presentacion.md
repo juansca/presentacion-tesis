@@ -1,28 +1,74 @@
-# Motivacion
+# Introducción
 
+Hola, hoy les voy a presentar mi trabajo final de la licenciatura en Cs de la compu.
+Antes que nada, queria aclarar que fue un trabajo que se desarrolló de una manera
+fuertemente interdisciplinaria en conjunto con personas de conae y con colaboración
+de miembro de la Organización mundo sano.
+Es por ello y por mi visión de la profesión que esta presentación va a estar
+enfocada a ello. La idea es que todos los que están presentes puedan entender
+la mayor parte del trabajo y de los resultados obtenidos.
+
+
+# Motivacion
+A mi entender, todo trabajo y proyecto debe estar empujado por una motivación la
+cual luego nos permite generar explícitamente el conjunto de objetivos que
+tendrá asociado el mismo. Así que arranquemos por ahí
+
+
+En este trabajo existen, al menos, dos grandes motivaciones. Una que tiene
+que ver con la problemática epidemiológica y el impacto de los resultados en ese
+aspecto y la otra con el aporte que se puede generar en la comunidad de
+profesionales que abordan estas problemáticas
+Las otras van por el lado del crecimiento personal y profesional que genera
+participar de este tipo de proyectos.
 
 ## Mosquito y enfermedad
-- El mosquito es uno de los vectores de enfermedades humanas más importantes en el
-mundo. En particular, el Aedes aegypti es el principal vector de Dengue, Chikungunya, Zika
-y Fiebre Amarilla urbana [48].
+Desde el punto de vista de la problemática epidemiológica podemos mencionar
+varias cuestiones que la hacen surgir.
 
-- Según datos de la Organización Mundial de la Salud (OMS),
-alrededor de 80 millones de personas se infectan de Dengue anualmente, cerca de 550 mil
-enfermos requieren hospitalización y unos 20 mil mueren.
+Por un lado, se sabe que el mosquito es uno de los vectores de enfermedades humanas
+más importantes en el mundo. En particular, el Aedes aegypti es el principal vector
+de Dengue, Chikungunya, Zika y Fiebre Amarilla urbana.
 
-- calculan que más de
-2.500 millones de personas corren riesgo de contraer la enfermedad y más de 100 paı́ses
-tienen transmisión endémica
-
-- Imagen del Cami (at provincia) en 2016
+A su vez, según datos de la Organización Mundial de la Salud (OMS),
+alrededor de 80 millones de personas se infectan de Dengue anualmente, cerca de 550
+mil enfermos requieren hospitalización y unos 20 mil mueren.
+2.500 millones de personas corren riesgo de contraer la enfermedad y más de 100 paı́ses tienen transmisión endémica
 
 
-- Sumado a lo comentado, por su parte, el Aedes aegypti se caracteriza por su presencia en
-el medio urbano, su preferencia de crı́a en contenedores artificiales [76] y la resistencia de sus
-huevos a la desecación.
-Por otra
-parte, se le suma la capacidad adaptativa del Aedes aegypti y la aparición de resistencia del
-mismo debido al uso intensivo de insecticidas.
+
+- Aquí podemos observar un mapa de la Argentina que nos muestra el índice
+de enfermos de Dengue cada 100mil habitantes, a nivel provincia. Aquí,
+se tienen en cuenta los casos confirmados y probables hasta la semana número 20
+del año 2016
+
+- Mostrar alguito -
+
+Sumado a lo comentado, por su parte, el Aedes aegypti se caracteriza
+por su:
+  Gran capacidad adaptativa
+  Resistencia a insecticidas
+  Resistencia de huevos a la desecación
+  Presencia en el medio urbano
+  Preferencia de cria en contenedores artificiales
+
+
+
+
+En términos del aporte a los profesionales que trabajan actualmente, resulta
+interesante saber cómo lo están haciendo.
+
+La tendencia y actualidad es utilizar información satelital para generar los
+modelos dado que de esa manera se puede obtener información ambiental
+con alcance regional, tiene características espacio-temporales. Ésta, tuvo
+grandes avances en los últimos años. Aunque actualmente, los modelos que se
+utilizan asumen relaciones lineales entre las variables en cuestion.
+
+
+Ahora, recapitulando. Hablemos de algunas cuestiones a tener en cuenta.
+Por lo que ya les comenté, es claro que la prevención de estas enfermedades
+transmitidas por vectores debería ser, a través del control de
+vectores
 
 
 - Dado que la cantidad de vectores, el virus circulante y
